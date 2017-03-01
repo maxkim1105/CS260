@@ -28,6 +28,7 @@ end
 set flag = "true"
 while ($flag == "true")
     clear
+    # displays the menu
     echo "*** Welcome To Cal Poly's ATM System ***"
     echo "(1) Transfer from checking account to savings account"
     echo "(2) Transfer from savings account to checking account"
@@ -36,6 +37,64 @@ while ($flag == "true")
     echo "(5) Withdraw Cash from either account"
     echo "(6) Exit"
     echo "==> Please select option (1-6):"
-    set hi = $<
-    echo "POTATO"
+    set userInput = $<
+
+    # lets the user choose his/her option
+    switch ($userInput)
+    
+    # transfer from the checking to savings account
+    case 1:
+	clear
+	echo "Enter the amount:"
+	set trfAmount = $<
+	if ( $trfAmount > $checking ) then
+	    clear
+	    echo "Transaction not completed"
+	    echo "Current balance: ${checking}.00"
+	    sleep 2
+	    breaksw
+	endif
+	@ checking = ($checking - $trfAmount)
+	@ savigns = ($savings - $trfAmount)
+	sleep 2
+	breaksw
+	
+    # transfer from the savings to cheking account
+    case 2:
+	clear
+	echo "Enter the amount:"
+	set trfAmount = $<
+	if ( $trfAmount > $savings ) then
+	    clear
+	    echo "Transaction not completed"
+	    echo "Current balance: ${savings}.00"
+	    sleep 2
+	    breaksw
+	endif
+	@ savings = ($savings - $trfAmount)
+	@ checking = ($checking + $trfAmount)
+	sleep 2
+	breaksw
+	
+    # displays the balance of the savings account
+    case 3:
+	echo hi
+	breaksw
+    # displays the balance of the checking account	
+    case 4:
+        echo hi
+        breaksw
+    # withdraw cash from either the checking or savings account
+    case 5:
+        echo hi
+	breaksw
+    # terminate the script
+    case 6:
+        echo hi
+        breaksw
+   endsw
+
+   
 end
+
+clear
