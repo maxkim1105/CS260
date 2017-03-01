@@ -1,6 +1,7 @@
 #!/bin/csh
 # Usage: ATM service
 
+clear
 # initial balance of checking and savings account
 set checking = 1000
 set savings = 1000
@@ -55,7 +56,7 @@ while ($flag == "true")
 	    breaksw
 	endif
 	@ checking = ($checking - $trfAmount)
-	@ savigns = ($savings - $trfAmount)
+	@ savings = ($savings + $trfAmount)
 	sleep 2
 	breaksw
 	
@@ -78,20 +79,29 @@ while ($flag == "true")
 	
     # displays the balance of the savings account
     case 3:
-	echo hi
+	clear
+	echo "savings account balance: "\$"${savings}.00"
+	sleep 2
 	breaksw
+	
     # displays the balance of the checking account	
     case 4:
-        echo hi
-        breaksw
+        clear
+	echo "checking account balance: "\$"${checking}.00"
+	sleep 2
+	breaksw
+  
     # withdraw cash from either the checking or savings account
     case 5:
         echo hi
 	breaksw
     # terminate the script
     case 6:
-        echo hi
-        breaksw
+        clear
+        echo "Thank you for using the ATM system."
+	sleep 2
+        clear
+	exit 0
    endsw
 
    
