@@ -1,7 +1,7 @@
 #!/bin/csh
 # Usage: ATM service
 
-clear
+clear # clears the screen
 # initial balance of checking and savings account
 set checking = 1000
 set savings = 1000
