@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ksh
 
 
 # this function displays the menu

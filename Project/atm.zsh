@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 
 # this function displays the menu
