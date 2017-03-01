@@ -42,7 +42,6 @@ while ($flag == "true")
 
     # lets the user choose his/her option
     switch ($userInput)
-    
     # transfer from the checking to savings account
     case 1:
 	clear
@@ -93,8 +92,43 @@ while ($flag == "true")
   
     # withdraw cash from either the checking or savings account
     case 5:
-        echo hi
+	clear
+	echo "Please enter 1 or 2"
+	echo "(1) Withdraw from the Saving account"
+	echo "(2) Withdraw from the Checking account"
+	set input = $<
+	
+	# withdraw from the savings account
+	if ( $input == 1 ) then
+	    clear
+	    echo "The amount "\$": "
+	    set amount = $<
+	    if ( $amount > $savings ) then
+		clear
+		echo "Transaction not completed"
+		echo "Current balance: ${savings}.00"
+		sleep 2
+	    else
+		@ savings = ($savings - $amount)
+		sleep 2
+	    endif    
+	# withdraw from the checking account
+	else if ( $input == 2 ) then
+	    clear
+	    echo "The amount "\$": "
+	    set amount = $<
+	    if ( $amount > $checking ) then
+		clear
+		echo "Transaction not completed"
+		echo "Current balance: ${checking}.00"
+		sleep 2
+	    else
+		@ checking = ($checking - $amount)
+		sleep 2
+	    endif 
+    	endif
 	breaksw
+	
     # terminate the script
     case 6:
         clear
