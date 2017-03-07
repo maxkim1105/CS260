@@ -1,14 +1,6 @@
 #!/usr/bin/perl
 # project 2
 
-
-# get data file by calling a shell command
-my $data = getData();
-my $result = searchLastName();
-#my $result = `awk -F'[: ]' '\$2 == "Corder"' data.txt`;
-
-print "GORDONL \n$result";
-
 displayMenu();
 my $input = <STDIN>;
 chomp($input);
@@ -24,6 +16,37 @@ elsif ($input == 3) {
 }
 elsif ($input == 4) {
     lastNameSortReverse();
+}
+elsif ($input == 5) {
+    print "Enter the last name:\n";
+    my $name = <STDIN>;
+    chomp($name);
+    searchLastName($name);
+}
+elsif ($input == 6) {
+    print "Enter the year:\n";
+    my $year = <STDIN>;
+    chomp($year);
+    searchYear($year);
+}
+elsif ($input == 7) {
+    print "Enter the month:\n";
+    my $month = <STDIN>;
+    chomp($month);
+    searchMonth($month);
+}
+
+# Subroutines.
+
+# displays the menu
+sub displayMenu{
+    print "(1) Listing of records in alphabetical order of first name\n";
+    print "(2) Listing of records in alphabetical order of last name\n";
+    print "(3) Listing of records in reverse alphabetical order of first name\n";
+    print "(4) Listing of records in reverse alphabetical order of last name\n";
+    print "(5) Search for a record by Last Name and print out the result.\n";
+    print "(6) Search for a record by birthday in a given year.\n";
+    print "(7) Search for a record by birthday in a given month.\n";
 }
 
 sub lastNameSort{
@@ -52,19 +75,21 @@ sub getData{
     return $data;
 }
 
-# displays the menu
-sub displayMenu{
-    print "(1) Listing of records in alphabetical order of first name\n";
-    print "(2) Listing of records in alphabetical order of last name\n";
-    print "(3) Listing of records in reverse alphabetical order of first name\n";
-    print "(4) Listing of records in reverse alphabetical order of last name\n";
-    print "(5) Search for a record by Last Name and print out the result.\n";
-    print "(6) Search for a record by birthday in a given year or month.\n";
+sub searchLastName() {
+    my $lastName = $_[0];
+    my $result = `awk -F'[: ]' '\$2 == "$lastName"' data.txt`;
+    print "$result";
 }
 
-sub searchLastName() {
-    # awk -F'[: ]' '$2 == "Corder"' data.txt
-    #my $name = "Corder";
-    my $result = `awk -F'[: ]' '\$2 == "Corder"' data.txt`;
-    # print "HERE------\n $result\n";
+sub searchYear() {
+    my $year = $_[0];
+    my $result = `awk -F'[:/]' '\$7 == "$year"' data.txt`;
+    print "$result";
+}
+
+sub searchMonth() {
+    my $month = $_[0];
+    print "month: $month\n";
+    my $result = `awk -F'[:/]' '\$5 == "$month"' data.txt`;
+    print "$result";
 }
