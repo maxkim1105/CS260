@@ -8,7 +8,7 @@ chomp($input);
 if ($input == 1) {
     firstNameSort();
 }
-elsif ($inpyt == 2) {
+elsif ($input == 2) {
     lastNameSort();
 }
 elsif ($input == 3) {
